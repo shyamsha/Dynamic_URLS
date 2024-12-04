@@ -21,6 +21,9 @@ const DisplayResult = ({ result }) => {
         dataSource={result}
         pagination={false}
         bordered
+        scroll={{
+          y: 2 * 5,
+        }}
       />
     </>
   );

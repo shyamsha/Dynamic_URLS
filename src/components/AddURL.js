@@ -12,6 +12,7 @@ function AddURL({ url, onChangeURL, URLSdata, onAddURL }) {
             value={url}
             onChange={onChangeURL}
             style={{ width: "50%" }}
+            allowClear
           />
           <Tooltip title="Add URL">
             <Button

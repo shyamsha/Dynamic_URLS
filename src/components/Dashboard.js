@@ -30,11 +30,12 @@ const Dashboard = () => {
 
   const next = () => {
     let match = URLValidation(url);
-    if (!match && !loading) {
+    if (!match) {
       message.error("Please enter a valid URL");
       return;
+    } else if (!loading) {
+      setCurrent(current + 1);
     }
-    setCurrent(current + 1);
   };
 
   const prev = () => {
@@ -89,7 +90,11 @@ const Dashboard = () => {
         }}
       >
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => next()} disabled={!url}>
+          <Button
+            type="primary"
+            onClick={() => next()}
+            disabled={!url || loading}
+          >
             Next
           </Button>
         )}
