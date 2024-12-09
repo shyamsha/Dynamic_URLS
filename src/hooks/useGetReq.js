@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useGetReq = (url) => {
-  const [data, setData] = useState(null);
+  const [getData, setGetData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -19,7 +19,7 @@ const useGetReq = (url) => {
               description: element.body,
             });
           });
-          setData(response);
+          setGetData(response);
           setIsLoading(false);
         })
         .catch((err) => {
@@ -29,7 +29,7 @@ const useGetReq = (url) => {
     }
   }, [url]);
   // console.log("data", url);
-  return [data, isLoading, error];
+  return [getData, isLoading, error];
 };
 
 export default useGetReq;

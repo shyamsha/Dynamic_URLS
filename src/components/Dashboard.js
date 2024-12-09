@@ -5,6 +5,7 @@ import AddURL from "./AddURL";
 import DisplayResult from "./DisplayResult";
 import useGetReq from "../hooks/useGetReq";
 import { URLValidation } from "../util/validations";
+import usePostReq from "../hooks/usePostReq";
 
 const Dashboard = () => {
   const { token } = theme.useToken();
@@ -12,7 +13,8 @@ const Dashboard = () => {
   const [url, setUrl] = useState("");
   const [URLSdata, setURLSData] = useState("");
   const id = useId();
-  const [data, loading, error] = useGetReq(url);
+  const [getData, loading, error] = useGetReq(url);
+  // const [data] = usePostReq(url, { title: "foo", body: "bar", userId: 1 });
 
   const onAddURL = () => {
     const data = [];
@@ -58,7 +60,7 @@ const Dashboard = () => {
     },
     {
       title: "Finish",
-      content: <DisplayResult result={data} />,
+      content: <DisplayResult result={getData} />,
       icon: <CheckCircleTwoTone />,
     },
   ];

@@ -1,38 +1,7 @@
-// import React from "react";
-// import { Table } from "antd";
-
-// const DisplayResult = ({ result }) => {
-//   const columns = [
-//     {
-//       title: "Name",
-//       dataIndex: "name",
-//       key: "name",
-//       editable: true,
-//     },
-//     {
-//       title: "Description",
-//       dataIndex: "description",
-//       key: "description",
-//       editable: true,
-//     },
-//   ];
-//   return (
-//     <>
-//       <Table
-//         columns={columns}
-//         dataSource={result}
-//         pagination={false}
-//         bordered
-//         scroll={{}}
-//       />
-//     </>
-//   );
-// };
-
-// export default DisplayResult;
 import React, { useContext, useEffect, useRef, useState } from "react";
-
-import { Form, Input, Table } from "antd";
+import "./index.css";
+import { Button, Form, Input, Popconfirm, Table } from "antd";
+import { useId } from "react/cjs/react.production.min";
 const EditableContext = React.createContext(null);
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
@@ -110,19 +79,29 @@ const EditableCell = ({
   }
   return <td {...restProps}>{childNode}</td>;
 };
-const DisplayResult = ({ result }) => {
-  const [dataSource, setDataSource] = useState([...result]);
+const App = () => {
+  const [dataSource, setDataSource] = useState([
+    {
+      key: "0",
+      name: "Edward King 0",
+      age: "32",
+    },
+    {
+      key: "1",
+      name: "Edward King 1",
+      age: "32",
+    },
+  ]);
   const defaultColumns = [
     {
-      title: "Name",
+      title: "name",
       dataIndex: "name",
-      key: "name",
+      width: "30%",
       editable: true,
     },
     {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
+      title: "age",
+      dataIndex: "age",
       editable: true,
     },
   ];
@@ -135,7 +114,6 @@ const DisplayResult = ({ result }) => {
       ...row,
     });
     setDataSource(newData);
-    
   };
   const components = {
     body: {
@@ -170,4 +148,4 @@ const DisplayResult = ({ result }) => {
     </div>
   );
 };
-export default DisplayResult;
+export default App;
